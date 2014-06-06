@@ -229,16 +229,16 @@ ENTRY CALCULATE_TKE1
 	UNST	   = PRDK-TKE(K,I,2)
 	UNSE	   = 1.44*TKE(K,I,2)/TKE(K,I,1)*PRDK-1.92*(TKE(K,I,2)/TKE(K,I,1)*TKE(K,I,2))
 
-	UDR		= (1.0+SIGN(1.0,U(K,I)))*0.5
-	UDL		= (1.0+SIGN(1.0,U(K,I-1)))*0.5
+	UDR		= (1.0+SIGN(1.0_8,U(K,I)))*0.5
+	UDL		= (1.0+SIGN(1.0_8,U(K,I-1)))*0.5
 	CONVKX 	= DLT/(DLX(I)*BH1(K,I))*((U(K,I)*(UDR*TKE(K,I,1)+(1.0-UDR)*TKE(K,I+1,1))*BR(K,I)*H2(K,I)-U(K,I-1)*(UDL*TKE(K,I-1,1)+(1.0-UDL)*TKE(K,I,1))*BR(K,I-1)*H2(K,I-1)))
 	CONVEX 	= DLT/(DLX(I)*BH1(K,I))*((U(K,I)*(UDR*TKE(K,I,2)+(1.0-UDR)*TKE(K,I+1,2))*BR(K,I)*H2(K,I)-U(K,I-1)*(UDL*TKE(K,I-1,2)+(1.0-UDL)*TKE(K,I,2))*BR(K,I-1)*H2(K,I-1)))
 	IF(IMPTKE(JW) == '     IMP')THEN
 	  TKE(K,I,1) = TKE(K,I,1) - CONVKX + DLT*(UNST+PRHK-BOUK)		
 	  TKE(K,I,2) = TKE(K,I,2) - CONVEX + DLT*(UNSE+PRHE)
 	ELSE
-	  ATA		  = (1.0+SIGN(1.0,W(K-1,I)))*0.5
-	  AB		  = (1.0+SIGN(1.0,W(K,I)))*0.5
+	  ATA		  = (1.0+SIGN(1.0_8,W(K-1,I)))*0.5
+	  AB		  = (1.0+SIGN(1.0_8,W(K,I)))*0.5
 	
 	  CONVKZ	  = DLT/(H2(K,I)*BH1(K,I))*((AB*TKE(K,I,1)+(1.0-AB)*TKE(K+1,I,1))*W(K,I)*BB(K,I)*AVH2(K,I)-(ATA*(TKE(K-1,I,1)+(1.0-ATA)*TKE(K,I,1))*W(K-1,I)*BB(K-1,I)*AVH2(K-1,I)))
       CONVEZ	  = DLT/(H2(K,I)*BH1(K,I))*((AB*TKE(K,I,2)+(1.0-AB)*TKE(K+1,I,2))*W(K,I)*BB(K,I)*AVH2(K,I)-(ATA*(TKE(K-1,I,2)+(1.0-ATA)*TKE(K,I,2))*W(K-1,I)*BB(K-1,I)*AVH2(K-1,I)))

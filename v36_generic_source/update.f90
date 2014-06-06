@@ -95,7 +95,7 @@ USE GLOBAL;     USE NAMESC; USE GEOMC;  USE LOGICC; USE PREC;  USE SURFHE;  USE 
 ! v3.5 end
   DO JW = 1,nwb !mlm
     IF (ULTIMATE(JW)) THEN   ! SR 5/15/06
-      IF(LAYERCHANGE(JW) == .TRUE.)THEN
+      IF(LAYERCHANGE(JW) .EQV. .TRUE.)THEN
       DO K=KTWB(JW),KMX    ! only need to update this for KT - if layer change then update for all variables to be safe                                               !DO K=2,KMX
       RATZ(K,JW)  =  AVH2(K-1,DS(BE(JW)))/AVH2(K,DS(BE(JW)))                                         ! SW 5/20/05
       CURZ1(K,JW) =  2.0*H(K,JW)**2/(AVH2(K-1,DS(BE(JW)))+AVH2(K,DS(BE(JW))))/AVH2(K-1,DS(BE(JW)))   ! SW 5/20/05

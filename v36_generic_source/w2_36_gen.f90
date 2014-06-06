@@ -431,8 +431,8 @@ CALL HYDROINOUT
 
         DO I=IU,ID-1
           DO K=KT,KBMIN(I)
-            UDR       = (1.0+SIGN(1.0,(U(K,I)+U(K,I+1))*0.5))*0.5
-            UDL       = (1.0+SIGN(1.0,(U(K,I)+U(K,I-1))*0.5))*0.5
+            UDR       = (1.0+SIGN(1.0_8,(U(K,I)+U(K,I+1))*0.5))*0.5
+            UDL       = (1.0+SIGN(1.0_8,(U(K,I)+U(K,I-1))*0.5))*0.5
             ADMX(K,I) = (BH2(K,I+1)*(U(K,I+1)+U(K,I))*0.5*(UDR*U(K,I)+(1.0-UDR)*U(K,I+1))-BH2(K,I)*(U(K,I)+U(K,I-1))               &
                         *0.5*(UDL*U(K,I-1)+(1.0-UDL)*U(K,I)))/DLXR(I)
           END DO
@@ -450,7 +450,7 @@ CALL HYDROINOUT
 
         DO I=IU,ID-1
           DO K=KT,KB(I)-1
-            AB        = (1.0+SIGN(1.0,(W(K,I+1)+W(K,I))*0.5))*0.5
+            AB        = (1.0+SIGN(1.0_8,(W(K,I+1)+W(K,I))*0.5))*0.5
             ADMZ(K,I) = (BR(K,I)+BR(K+1,I))*0.5*(W(K,I+1)+W(K,I))*0.5*(AB*U(K,I)+(1.0-AB)*U(K+1,I))
           END DO
         END DO

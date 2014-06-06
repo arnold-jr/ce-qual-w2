@@ -264,7 +264,7 @@ ENTRY HORIZONTAL_MULTIPLIERS
         IF (ULTIMATE(JW)) THEN
           RATDI = 1.0/RATS(K,I)
           DELC  = RATS(K,I)*C3X+(RATDI-RATS(K,I))*C2X-RATDI*C1X
-          DELC  = SIGN(1.0,U(K,I))*DELC
+          DELC  = SIGN(1.0_8,U(K,I))*DELC
           ADELC = ABS(DELC)
           ACURZ = ABS(CURS3(K,I)*C3X+CURS2(K,I)*C2X+CURS1(K,I)*C1X)
           IF (ACURZ <= 0.6*ADELC) THEN
@@ -426,7 +426,7 @@ ENTRY VERTICAL_MULTIPLIERS
           COUR  =  W(K,I)*DLT/SF1Z(K,JW)
           RATZI = 1.0/RATSZ(K,I)
           DELC  = RATSZ(K,I)*C3Z+(RATZI-RATSZ(K,I))*C2Z-RATZI*C1Z
-          DELC  = SIGN(1.0,W(K,I))*DELC
+          DELC  = SIGN(1.0_8,W(K,I))*DELC
           ADELC = ABS(DELC)
           ACURZ = ABS(CURS3Z(K,I)*C3Z+CURS2Z(K,I)*C2Z+CURS1Z(K,I)*C1Z)
           IF (ACURZ <= 0.6*ADELC) THEN

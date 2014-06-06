@@ -279,7 +279,7 @@ INTEGER JN
             ENDDO
         WRITE (CPL(JW), *)'TITLE="CE-QUAL-W2"'
 		WRITE (CPL(JW),19233)(CNAME2(CN(JN)),JN=1,NAC)
-		19233 FORMAT('VARIABLES="Distance, m","Elevation, m","U","W","T","RHO"',<NAC>(',"',A8,'"'))
+		19233 FORMAT('VARIABLES="Distance, m","Elevation, m","U","W","T","RHO",<NAC>',(',"',A8,'"'))
         ENDIF
       END IF
       IF (VECTOR(JW)) THEN

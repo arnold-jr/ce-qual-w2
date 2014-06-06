@@ -105,7 +105,7 @@ ENTRY KINETIC_RATES
     DO K=KT,KB(I)
       DO1(K,I)          = O2(K,I)/(O2(K,I)+KDO)                  !V3.5
       DO2(K,I)          = 1.0 - DO1(K,I)                         !O2(K,I)/(O2(K,I)+KDO)
-      DO3(K,I)          = (1.0+SIGN(1.0,O2(K,I)-1.E-10)) *0.5
+      DO3(K,I)          = (1.0+SIGN(1.0_8,O2(K,I)-1.E-10)) *0.5
       SEDD(K,I)         =   SODTRM(K,I) *SDKV(K,I)   *SED(K,I) *DO3(K,I)   !CB 10/22/06
       SEDDP(K,I)         =  SODTRM(K,I) *SDKV(K,I)   *SEDP(K,I) *DO3(K,I)
       SEDDN(K,I)         =  SODTRM(K,I) *SDKV(K,I)   *SEDN(K,I) *DO3(K,I)
@@ -283,7 +283,7 @@ ENTRY KINETIC_RATES
         DO JA=1,NAL
           IF(ALG_CALC(JA))TGRAZE(K,I,JZ)=PREFA(JA,JZ)*ALG(K,I,JA)+TGRAZE(K,I,JZ)
     END DO
-        ZMINFAC  = (1.0+SIGN(1.0,ZOO(K,I,JZ)-ZOOMIN(JZ)))*0.5
+        ZMINFAC  = (1.0+SIGN(1.0_8,ZOO(K,I,JZ)-ZOOMIN(JZ)))*0.5
         ZRT(K,I,JZ) =  ZOORMR(K,I,JZ)*ZR(JZ)*ZMINFAC*DO3(K,I)
         IF (TGRAZE(K,I,JZ) <= 0.0 .OR. O2(K,I) < 2.0) THEN
           ZMU(K,I,JZ)       = 0.0
